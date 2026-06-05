@@ -1,0 +1,36 @@
+<header class="site-header" [class.is-scrolled]="isScrolled()" id="top">
+  <div class="container header-inner glass">
+    <a href="#top" class="brand" aria-label="Furnabit, volver al inicio">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 26 26" fill="none">
+          <rect x="2" y="2" width="9.5" height="9.5" rx="3" fill="var(--accent)"/>
+          <rect x="14.5" y="2" width="9.5" height="9.5" rx="3" fill="var(--accent)" opacity="0.55"/>
+          <rect x="2" y="14.5" width="9.5" height="9.5" rx="3" fill="var(--ink)" opacity="0.5"/>
+          <rect x="14.5" y="14.5" width="9.5" height="9.5" rx="3" fill="var(--accent)" opacity="0.3"/>
+        </svg>
+      </span>
+      <span class="brand-wordmark">Furnabit</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      id="menu-toggle"
+      type="button"
+      [attr.aria-expanded]="menuOpen()"
+      [attr.aria-label]="menuOpen() ? 'Cerrar navegación principal' : 'Abrir navegación principal'"
+      (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="site-nav" [class.is-open]="menuOpen()" aria-label="Navegación principal">
+      <ul class="nav-menu">
+        <li><a href="#servicios" (click)="closeMenu()">Servicios</a></li>
+        <li><a href="#tech" (click)="closeMenu()">Stack</a></li>
+        <li><a href="#equipo" (click)="closeMenu()">Equipo</a></li>
+        <li><a href="#proceso" (click)="closeMenu()">Proceso</a></li>
+        <li><a href="#contacto" class="nav-cta" (click)="closeMenu()">Hablemos</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

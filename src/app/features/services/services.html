@@ -1,0 +1,22 @@
+<section class="section" id="servicios" aria-labelledby="servicios-title">
+  <div class="container panel glass reveal">
+    <div class="panel-head">
+      <span class="panel-tag">// capacidades</span>
+      <h2 id="servicios-title">Todo lo que necesitas para digitalizar tu negocio</h2>
+      <p>Desarrollo completo de principio a fin. Cada proyecto es único; cada solución está hecha a tu medida.</p>
+    </div>
+
+    <ul class="capability-list">
+      <li class="capability" *ngFor="let cap of capabilities">
+        <span class="capability-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 32 32" fill="none" [innerHTML]="cap.icon"></svg>
+        </span>
+        <div>
+          <h3>{{ cap.title }}</h3>
+          <p>{{ cap.description }}</p>
+          <span class="capability-meta">{{ cap.meta }}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

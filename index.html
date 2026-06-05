@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Furnabit — Software a medida, desarrollo web y soluciones digitales personalizadas. Un equipo de 4 especialistas en tecnología.">
+  <meta name="theme-color" content="#0a1422">
+  <title>Furnabit · Software a medida</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- Three.js self-hosteado (sin dependencia de CDN en runtime). -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three.module.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+  <!-- Capa 0a · gradiente base / fallback si WebGL no está disponible -->
+  <div class="bg-field" aria-hidden="true"></div>
+
+  <!-- Capa 0b · entorno 3D a pantalla completa -->
+  <canvas id="scene" class="scene-canvas" aria-hidden="true"></canvas>
+
+  <!-- Capa HUD · micro-telemetría de laboratorio (decorativa) -->
+  <div class="hud" aria-hidden="true">
+    <span class="hud-item hud-tl">FURNABIT · WEBGL RENDERER</span>
+    <span class="hud-item hud-tr" id="hud-coords">x 0.000 · y 0.000</span>
+    <span class="hud-item hud-bl" id="hud-mesh">mesh · inicializando</span>
+    <span class="hud-item hud-br" id="hud-fps">-- fps</span>
+  </div>
+
+  <!-- Capa UI · overlay flotante (pointer-events: none; los interactivos lo recuperan) -->
+  <div class="page-shell">
+    <header class="site-header" id="top">
+      <div class="container header-inner glass">
+        <a href="#top" class="brand" aria-label="Furnabit, volver al inicio">
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 26 26" fill="none">
+              <rect x="2" y="2" width="9.5" height="9.5" rx="3" fill="var(--accent)"/>
+              <rect x="14.5" y="2" width="9.5" height="9.5" rx="3" fill="var(--accent)" opacity="0.55"/>
+              <rect x="2" y="14.5" width="9.5" height="9.5" rx="3" fill="var(--ink)" opacity="0.5"/>
+              <rect x="14.5" y="14.5" width="9.5" height="9.5" rx="3" fill="var(--accent)" opacity="0.3"/>
+            </svg>
+          </span>
+          <span class="brand-wordmark">Furnabit</span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          id="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+          aria-label="Abrir navegación principal">
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="site-nav" aria-label="Navegación principal">
+          <ul class="nav-menu" id="nav-menu">
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#tech">Stack</a></li>
+            <li><a href="#equipo">Equipo</a></li>
+            <li><a href="#proceso">Proceso</a></li>
+            <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container hero-inner" data-parallax="0.18">
+          <span class="live-chip">
+            <span class="pulse-dot"></span>
+            Aceptando proyectos
+          </span>
+
+          <h1 class="reveal">Construimos el <span class="text-accent">software</span><br>que tu negocio necesita.</h1>
+
+          <p class="lead reveal">
+            Un equipo de 4 especialistas que diseña, desarrolla y despliega
+            soluciones digitales a medida. Sin plantillas, sin atajos: código que funciona en producción.
+          </p>
+
+          <div class="hero-actions reveal">
+            <a class="button button-primary" href="#contacto">
+              Solicitar presupuesto
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a class="button button-secondary" href="#servicios">Explorar servicios</a>
+          </div>
+
+          <dl class="hero-stats reveal">
+            <div class="stat-item">
+              <dt class="stat-label">Proyectos entregados</dt>
+              <dd class="stat-value"><span class="counter" data-target="47">0</span></dd>
+            </div>
+            <div class="stat-item">
+              <dt class="stat-label">Especialistas</dt>
+              <dd class="stat-value"><span class="counter" data-target="4">0</span></dd>
+            </div>
+            <div class="stat-item">
+              <dt class="stat-label">Clientes satisfechos</dt>
+              <dd class="stat-value">99<span class="stat-unit">%</span></dd>
+            </div>
+          </dl>
+        </div>
+
+        <span class="scroll-cue reveal" aria-hidden="true">
+          <span class="scroll-cue-line"></span>
+          desplázate
+        </span>
+      </section>
+
+      <!-- SERVICIOS -->
+      <section class="section" id="servicios" aria-labelledby="servicios-title">
+        <div class="container panel glass reveal">
+          <div class="panel-head">
+            <span class="panel-tag">// capacidades</span>
+            <h2 id="servicios-title">Todo lo que necesitas para digitalizar tu negocio</h2>
+            <p>Desarrollo completo de principio a fin. Cada proyecto es único; cada solución está hecha a tu medida.</p>
+          </div>
+
+          <ul class="capability-list">
+            <li class="capability">
+              <span class="capability-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+                  <rect x="3" y="6" width="26" height="18" rx="3" stroke="var(--accent)" stroke-width="2"/>
+                  <path d="M3 24h26" stroke="var(--accent)" stroke-width="2"/>
+                  <path d="M11 13l3 3-3 3M17 13h4" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <div>
+                <h3>Desarrollo Web &amp; Apps</h3>
+                <p>SPAs con Angular, plataformas SaaS y apps móviles nativas e híbridas, cuidadas al pixel.</p>
+                <span class="capability-meta">Angular · React · PWA · Mobile</span>
+              </div>
+            </li>
+            <li class="capability">
+              <span class="capability-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+                  <circle cx="16" cy="16" r="5" stroke="var(--accent)" stroke-width="2"/>
+                  <path d="M16 4v6M16 22v6M4 16h6M22 16h6" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <div>
+                <h3>Backend &amp; APIs</h3>
+                <p>Arquitecturas robustas con Python, APIs REST y GraphQL, microservicios e integraciones.</p>
+                <span class="capability-meta">Python · FastAPI · PostgreSQL</span>
+              </div>
+            </li>
+            <li class="capability">
+              <span class="capability-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+                  <rect x="4" y="4" width="24" height="24" rx="4" stroke="var(--accent)" stroke-width="2"/>
+                  <path d="M4 12h24M12 12v16" stroke="var(--accent)" stroke-width="2"/>
+                </svg>
+              </span>
+              <div>
+                <h3>UI/UX &amp; Diseño</h3>
+                <p>Interfaces accesibles, prototipos interactivos y sistemas de diseño escalables.</p>
+                <span class="capability-meta">Figma · Design System · A11Y</span>
+              </div>
+            </li>
+            <li class="capability">
+              <span class="capability-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+                  <path d="M16 4l12 7v10l-12 7L4 21V11l12-7z" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M4 11l12 7 12-7M16 18v10" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <div>
+                <h3>DevOps &amp; Cloud</h3>
+                <p>Infraestructura como código, CI/CD, contenedores Docker y despliegues automatizados.</p>
+                <span class="capability-meta">Docker · AWS · CI/CD · Kubernetes</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- TECH STACK -->
+      <section class="section" id="tech" aria-labelledby="tech-title">
+        <div class="container panel glass reveal">
+          <div class="panel-head">
+            <span class="panel-tag">// stack</span>
+            <h2 id="tech-title">Stack moderno, resultados sólidos</h2>
+            <p>Elegimos las mejores herramientas para cada proyecto. Sin ataduras, con criterio.</p>
+          </div>
+
+          <div class="tech-grid">
+            <div class="tech-category">
+              <h3 class="tech-category-title">Frontend</h3>
+              <ul class="tech-items">
+                <li class="tech-item"><span class="tech-dot"></span>Angular 21</li>
+                <li class="tech-item"><span class="tech-dot"></span>TypeScript</li>
+                <li class="tech-item"><span class="tech-dot"></span>Tailwind CSS</li>
+                <li class="tech-item"><span class="tech-dot"></span>RxJS</li>
+              </ul>
+            </div>
+            <div class="tech-category">
+              <h3 class="tech-category-title">Backend</h3>
+              <ul class="tech-items">
+                <li class="tech-item"><span class="tech-dot"></span>Python</li>
+                <li class="tech-item"><span class="tech-dot"></span>FastAPI</li>
+                <li class="tech-item"><span class="tech-dot"></span>Django</li>
+                <li class="tech-item"><span class="tech-dot"></span>Node.js</li>
+              </ul>
+            </div>
+            <div class="tech-category">
+              <h3 class="tech-category-title">Data &amp; Cloud</h3>
+              <ul class="tech-items">
+                <li class="tech-item"><span class="tech-dot"></span>PostgreSQL</li>
+                <li class="tech-item"><span class="tech-dot"></span>MongoDB</li>
+                <li class="tech-item"><span class="tech-dot"></span>Redis</li>
+                <li class="tech-item"><span class="tech-dot"></span>AWS / GCP</li>
+              </ul>
+            </div>
+            <div class="tech-category">
+              <h3 class="tech-category-title">Herramientas</h3>
+              <ul class="tech-items">
+                <li class="tech-item"><span class="tech-dot"></span>Docker</li>
+                <li class="tech-item"><span class="tech-dot"></span>Git</li>
+                <li class="tech-item"><span class="tech-dot"></span>Figma</li>
+                <li class="tech-item"><span class="tech-dot"></span>CI/CD</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EQUIPO -->
+      <section class="section" id="equipo" aria-labelledby="equipo-title">
+        <div class="container panel glass reveal">
+          <div class="panel-head">
+            <span class="panel-tag">// equipo</span>
+            <h2 id="equipo-title">4 personas. Cero burocracia.</h2>
+            <p>Pequeños por elección, grandes por impacto. Cada miembro domina su área y todos participan en cada proyecto.</p>
+          </div>
+
+          <ul class="team-grid">
+            <li class="team-card">
+              <span class="team-avatar" aria-hidden="true">FL</span>
+              <h3>Frontend Lead</h3>
+              <p class="team-role">Angular · TypeScript · UI/UX</p>
+              <p>Interfaces rápidas, accesibles y con diseño cuidado al pixel.</p>
+            </li>
+            <li class="team-card">
+              <span class="team-avatar" aria-hidden="true">BL</span>
+              <h3>Backend Lead</h3>
+              <p class="team-role">Python · APIs · Arquitectura</p>
+              <p>Sistemas robustos, escalables y seguros desde el primer commit.</p>
+            </li>
+            <li class="team-card">
+              <span class="team-avatar" aria-hidden="true">FS</span>
+              <h3>Full Stack</h3>
+              <p class="team-role">React · Node.js · DevOps</p>
+              <p>El puente entre front y back: despliegues, pipelines y automatización.</p>
+            </li>
+            <li class="team-card">
+              <span class="team-avatar" aria-hidden="true">UX</span>
+              <h3>UX Designer</h3>
+              <p class="team-role">Figma · Prototyping · Research</p>
+              <p>Diseño con datos, no con opiniones. Cada decisión visual tiene un porqué.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- PROCESO -->
+      <section class="section" id="proceso" aria-labelledby="proceso-title">
+        <div class="container panel glass reveal">
+          <div class="panel-head">
+            <span class="panel-tag">// proceso</span>
+            <h2 id="proceso-title">De la idea al despliegue en cuatro fases</h2>
+            <p>Un recorrido ordenado y predecible, sin sorpresas a mitad de camino.</p>
+          </div>
+
+          <ol class="process-grid">
+            <li class="process-step">
+              <span class="step-number">01</span>
+              <h3>Descubrimiento</h3>
+              <p>Entendemos tu negocio, definimos requisitos y diseñamos la arquitectura técnica ideal.</p>
+            </li>
+            <li class="process-step">
+              <span class="step-number">02</span>
+              <h3>Diseño</h3>
+              <p>Prototipos interactivos, validación con usuarios reales y sistema de diseño definido.</p>
+            </li>
+            <li class="process-step">
+              <span class="step-number">03</span>
+              <h3>Desarrollo</h3>
+              <p>Sprints cortos, entregas frecuentes, código limpio y testing automatizado.</p>
+            </li>
+            <li class="process-step">
+              <span class="step-number">04</span>
+              <h3>Lanzamiento</h3>
+              <p>Despliegue, monitorización, soporte posterior y evolución continua.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section" aria-labelledby="cta-title">
+        <div class="container panel glass cta-panel reveal" id="build-card">
+          <span class="build-status">
+            <span class="build-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 28 28" fill="none">
+                <circle cx="14" cy="14" r="12" stroke="var(--success)" stroke-width="2"/>
+                <path d="M9 14.5l3.5 3.5 7-7" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Build complete · todos los módulos compilados
+          </span>
+          <h2 id="cta-title">Tu proyecto, listo para producción</h2>
+          <p>Cada módulo en su sitio, cada línea con propósito. Cuéntanos tu idea y lo construimos juntos.</p>
+          <a class="button button-primary button-lg" href="#contacto">
+            Empezar proyecto
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section class="section" id="contacto" aria-labelledby="contacto-title">
+        <div class="container panel glass contact-panel reveal">
+          <div class="contact-intro">
+            <span class="panel-tag">// contacto</span>
+            <h2 id="contacto-title">Hablemos de tu proyecto</h2>
+            <p>Rellena el formulario o escríbenos directamente. Respondemos en menos de 24 horas.</p>
+            <ul class="contact-info">
+              <li class="contact-info-item">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <rect x="2" y="4" width="16" height="12" rx="2" stroke="var(--accent)" stroke-width="1.5"/>
+                  <path d="M2 6l8 5 8-5" stroke="var(--accent)" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <a href="mailto:hola@furnabit.com">hola@furnabit.com</a>
+              </li>
+              <li class="contact-info-item">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M10 2a6.5 6.5 0 0 1 6.5 6.5c0 4.5-6.5 9.5-6.5 9.5s-6.5-5-6.5-9.5A6.5 6.5 0 0 1 10 2z" stroke="var(--accent)" stroke-width="1.5"/>
+                  <circle cx="10" cy="8.5" r="2" stroke="var(--accent)" stroke-width="1.5"/>
+                </svg>
+                <span>España · Remoto</span>
+              </li>
+            </ul>
+          </div>
+
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name">Nombre</label>
+              <input id="name" name="name" type="text" autocomplete="name" placeholder="Tu nombre" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="tu@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Cuéntanos tu proyecto</label>
+              <textarea id="message" name="message" rows="4" placeholder="Describe brevemente qué necesitas" required></textarea>
+            </div>
+            <button class="button button-primary" type="submit">
+              Enviar mensaje
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M14 2L7 9M14 2l-5 12-2-5-5-2 12-5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <span class="brand-wordmark">Furnabit</span>
+          <p>Software a medida que funciona.</p>
+        </div>
+        <nav class="footer-links" aria-label="Enlaces de pie de página">
+          <a href="#servicios">Servicios</a>
+          <a href="#tech">Stack</a>
+          <a href="#equipo">Equipo</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+        <p class="footer-copy">&copy; 2026 Furnabit. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="scene.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

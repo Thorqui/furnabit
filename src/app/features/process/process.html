@@ -1,0 +1,17 @@
+<section class="section" id="proceso" aria-labelledby="proceso-title">
+  <div class="container panel glass reveal">
+    <div class="panel-head">
+      <span class="panel-tag">// proceso</span>
+      <h2 id="proceso-title">De la idea al despliegue en cuatro fases</h2>
+      <p>Un recorrido ordenado y predecible, sin sorpresas a mitad de camino.</p>
+    </div>
+
+    <ol class="process-grid">
+      <li class="process-step" *ngFor="let step of steps">
+        <span class="step-number">{{ step.number }}</span>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.description }}</p>
+      </li>
+    </ol>
+  </div>
+</section>

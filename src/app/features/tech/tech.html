@@ -1,0 +1,20 @@
+<section class="section" id="tech" aria-labelledby="tech-title">
+  <div class="container panel glass reveal">
+    <div class="panel-head">
+      <span class="panel-tag">// stack</span>
+      <h2 id="tech-title">Stack moderno, resultados sólidos</h2>
+      <p>Elegimos las mejores herramientas para cada proyecto. Sin ataduras, con criterio.</p>
+    </div>
+
+    <div class="tech-grid">
+      <div class="tech-category" *ngFor="let cat of categories">
+        <h3 class="tech-category-title">{{ cat.title }}</h3>
+        <ul class="tech-items">
+          <li class="tech-item" *ngFor="let item of cat.items">
+            <span class="tech-dot"></span>{{ item }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
