@@ -1,17 +1,19 @@
-<section class="section" id="proceso" aria-labelledby="proceso-title">
-  <div class="container panel glass reveal">
-    <div class="panel-head">
-      <span class="panel-tag">// proceso</span>
-      <h2 id="proceso-title">De la idea al despliegue en cuatro fases</h2>
-      <p>Un recorrido ordenado y predecible, sin sorpresas a mitad de camino.</p>
+<section class="section" id="proceso" aria-labelledby="proceso-title" style="height: 100vh;">
+  <div class="container">
+    <div class="panel-head reveal">
+      <span class="panel-tag">// cómo trabajamos</span>
+      <h2 id="proceso-title">Así trabajamos juntos, paso a paso</h2>
+      <p>Un proceso claro de principio a fin para que sepas en todo momento en qué punto está tu proyecto.</p>
     </div>
 
-    <ol class="process-grid">
-      <li class="process-step" *ngFor="let step of steps">
-        <span class="step-number">{{ step.number }}</span>
-        <h3>{{ step.title }}</h3>
-        <p>{{ step.description }}</p>
-      </li>
+    <ol class="process-timeline reveal">
+      @for (step of steps; track step.number) {
+        <li class="process-step">
+          <span class="step-badge">{{ step.number }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </li>
+      }
     </ol>
   </div>
 </section>

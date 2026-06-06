@@ -8,32 +8,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './hero.css',
 })
 export class Hero implements OnInit, OnDestroy {
-  private observer: IntersectionObserver | null = null;
   private scrollListener: () => void = () => {};
 
   ngOnInit(): void {
-    this.setupRevealAnimation();
     this.setupParallax();
-  }
-
-  private setupRevealAnimation(): void {
-    const revealItems = document.querySelectorAll('.reveal');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if ('IntersectionObserver' in window && !reduceMotion) {
-      this.observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            this.observer?.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
-
-      revealItems.forEach(item => this.observer?.observe(item));
-    } else {
-      revealItems.forEach(item => item.classList.add('is-visible'));
-    }
   }
 
   private setupParallax(): void {
@@ -62,7 +40,6 @@ export class Hero implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.observer?.disconnect();
     if (this.scrollListener) {
       window.removeEventListener('scroll', this.scrollListener);
     }

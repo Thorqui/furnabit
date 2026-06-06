@@ -11,27 +11,27 @@ export class Team {
   members = [
     {
       avatar: 'FL',
-      title: 'Frontend Lead',
-      role: 'Angular · TypeScript · UI/UX',
-      description: 'Interfaces rápidas, accesibles y con diseño cuidado al pixel.'
+      title: 'Lead de Producto',
+      role: 'Interfaces · Experiencia · Diseño',
+      description: 'Convierte las necesidades de tu negocio en interfaces que tus clientes entienden sin formación previa.'
     },
     {
       avatar: 'BL',
-      title: 'Backend Lead',
-      role: 'Python · APIs · Arquitectura',
-      description: 'Sistemas robustos, escalables y seguros desde el primer commit.'
+      title: 'Lead Técnico',
+      role: 'Arquitectura · Sistemas · Seguridad',
+      description: 'Toma las decisiones técnicas que hacen que tu producto escale sin romperse cuando más lo necesitas.'
     },
     {
       avatar: 'FS',
-      title: 'Full Stack',
-      role: 'React · Node.js · DevOps',
-      description: 'El puente entre front y back: despliegues, pipelines y automatización.'
+      title: 'Desarrollo e Integraciones',
+      role: 'Producto · Automatización · Cloud',
+      description: 'Une las piezas: conecta sistemas, automatiza procesos y mantiene todo funcionando en producción.'
     },
     {
       avatar: 'UX',
-      title: 'UX Designer',
-      role: 'Figma · Prototyping · Research',
-      description: 'Diseño con datos, no con opiniones. Cada decisión visual tiene un porqué.'
+      title: 'Diseño de Experiencia',
+      role: 'UX · Investigación · Prototipado',
+      description: 'Diseña con datos reales. Cada decisión de interfaz tiene un porqué basado en cómo usan tu producto los usuarios.'
     }
   ];
 }

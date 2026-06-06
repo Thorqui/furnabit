@@ -11,23 +11,23 @@ export class Process {
   steps = [
     {
       number: '01',
-      title: 'Descubrimiento',
-      description: 'Entendemos tu negocio, definimos requisitos y diseñamos la arquitectura técnica ideal.'
+      title: 'Escuchamos',
+      description: 'Entendemos tu negocio, tus objetivos y el problema concreto que quieres resolver antes de proponer nada.'
     },
     {
       number: '02',
-      title: 'Diseño',
-      description: 'Prototipos interactivos, validación con usuarios reales y sistema de diseño definido.'
+      title: 'Diseñamos',
+      description: 'Definimos cómo va a funcionar tu producto y te lo mostramos antes de construir nada. Tu aprobación, siempre.'
     },
     {
       number: '03',
-      title: 'Desarrollo',
-      description: 'Sprints cortos, entregas frecuentes, código limpio y testing automatizado.'
+      title: 'Construimos',
+      description: 'Trabajamos en fases cortas con entregas frecuentes para que veas el avance real sin tener que esperar meses.'
     },
     {
       number: '04',
-      title: 'Lanzamiento',
-      description: 'Despliegue, monitorización, soporte posterior y evolución continua.'
+      title: 'Lanzamos',
+      description: 'Ponemos en marcha tu proyecto y nos quedamos a tu lado. El soporte posterior no es un extra, es parte del trato.'
     }
   ];
 }

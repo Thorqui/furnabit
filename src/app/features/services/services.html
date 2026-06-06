@@ -1,22 +1,16 @@
-<section class="section" id="servicios" aria-labelledby="servicios-title">
-  <div class="container panel glass reveal">
-    <div class="panel-head">
-      <span class="panel-tag">// capacidades</span>
-      <h2 id="servicios-title">Todo lo que necesitas para digitalizar tu negocio</h2>
-      <p>Desarrollo completo de principio a fin. Cada proyecto es único; cada solución está hecha a tu medida.</p>
-    </div>
-
-    <ul class="capability-list">
-      <li class="capability" *ngFor="let cap of capabilities">
-        <span class="capability-icon" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 32 32" fill="none" [innerHTML]="cap.icon"></svg>
-        </span>
-        <div>
+<section class="section" id="servicios" aria-label="Servicios de Furnabit">
+  <ul class="services-fullscreen">
+    @for (cap of capabilities; track cap.title; let i = $index) {
+      <li class="service-slide">
+        <div class="service-slide-inner">
+          <span class="service-slide-tag">// 0{{ i + 1 }} · 0{{ capabilities.length }}</span>
           <h3>{{ cap.title }}</h3>
           <p>{{ cap.description }}</p>
-          <span class="capability-meta">{{ cap.meta }}</span>
         </div>
+        @if (i < capabilities.length - 1) {
+          <span class="service-slide-hint" aria-hidden="true">scroll</span>
+        }
       </li>
-    </ul>
-  </div>
+    }
+  </ul>
 </section>

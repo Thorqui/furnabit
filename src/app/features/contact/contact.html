@@ -1,5 +1,5 @@
 <section class="section" id="contacto" aria-labelledby="contacto-title">
-  <div class="container panel glass contact-panel reveal">
+  <div class="container panel contact-panel reveal">
     <div class="contact-intro">
       <span class="panel-tag">// contacto</span>
       <h2 id="contacto-title">Hablemos de tu proyecto</h2>
@@ -36,10 +36,7 @@
         <textarea id="message" [(ngModel)]="message" name="message" rows="4" placeholder="Describe brevemente qué necesitas" required></textarea>
       </div>
       <button class="button button-primary" type="submit">
-        Enviar mensaje
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M14 2L7 9M14 2l-5 12-2-5-5-2 12-5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        Solicitar auditoría inicial
       </button>
       <p [class.success]="formMessageType() === 'success'" [class.error]="formMessageType() === 'error'" class="form-message" role="status" aria-live="polite">
         {{ formMessage() }}
