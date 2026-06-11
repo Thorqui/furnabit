@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (entry.target === buildCard) {
-          setTimeout(() => buildCard.classList.add("is-built"), prefersReducedMotion ? 0 : 260);
+          setTimeout(() => buildCard.classList.add("is-built"), prefersReducedMotion ? 0 : 70);
         }
         observer.unobserve(entry.target);
       });

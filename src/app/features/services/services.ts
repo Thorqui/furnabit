@@ -19,20 +19,20 @@ export class Services implements AfterViewInit, OnDestroy {
 
   capabilities = [
     {
-      title: 'Una aplicación hecha para tu negocio',
-      description: 'Si necesitas una plataforma para tus clientes, una herramienta interna para tu equipo o una app móvil, la construimos desde cero adaptada a cómo funciona tu empresa.',
+      title: 'Software a medida sin concesiones',
+      description: 'No adaptamos tu empresa a un programa; diseñamos ingeniería desde cero para tu operativa. Desarrollamos plataformas, herramientas internas o apps móviles bajo estándares estrictos de rendimiento. Si buscas una solución definitiva y estás dispuesto a implicarte en su diseño, somos tu equipo.',
     },
     {
-      title: 'Ahorra horas eliminando trabajo manual',
-      description: 'Conectamos el software que ya usas —facturas, pedidos, clientes— y automatizamos los pasos repetitivos. Tu equipo gana tiempo; tú ganas tranquilidad.',
+      title: 'Automatización de alto rendimiento',
+      description: 'Conectamos tus sistemas actuales —facturas, pedidos, CRM— para erradicar el error humano y las tareas repetitivas. No automatizamos procesos mediocres: optimizamos tu flujo de trabajo para que tu equipo rinda al máximo y tú recuperes el control estratégico.',
     },
     {
-      title: 'Una imagen digital que genera confianza',
-      description: 'La web o app con la que te ven tus clientes dice mucho de tu empresa. Diseñamos interfaces claras y profesionales que convierten visitas en oportunidades reales.',
+      title: 'Interfaces de nivel superior que venden',
+      description: 'Tu plataforma digital es la carta de presentación de tu solvencia. Huimos de diseños genéricos; creamos interfaces impecables, intuitivas y profesionales que transforman usuarios escépticos en clientes recurrentes. Diseñamos para marcas que exigen liderar su sect',
     },
     {
-      title: 'Que todo funcione, sin que tengas que ocuparte',
-      description: 'Después del lanzamiento nos encargamos de que tu producto esté siempre disponible, actualizado y seguro. Tú te centras en tu negocio; nosotros en la tecnología.',
+      title: 'Soporte de Élite y Evolución Continua',
+      description: 'El lanzamiento es solo el principio. Nos convertimos en tu departamento tecnológico de confianza para garantizar que tu software esté blindado, actualizado y disponible 24/7. Tú lideras el negocio; nosotros aseguramos que la tecnología jamás sea un freno.',
     }
   ];
 
