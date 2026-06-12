@@ -95,6 +95,11 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.anchor-target {
+  display: block;
+  scroll-margin-top: calc(var(--header-height) + var(--space-lg));
+}
+
 body {
   font-family: var(--font-body);
   font-size: 16px;
@@ -660,7 +665,7 @@ p { text-wrap: pretty; }
 }
 .contact-info-item a:hover { color: var(--accent-bright); transform: translateY(-1px); }
 
-.contact-form { display: grid; gap: var(--space-md); }
+.contact-form { display: grid; gap: var(--space-md); scroll-margin-top: calc(var(--header-height) + var(--space-lg)); }
 .form-group { display: grid; gap: var(--space-xs); }
 .contact-form label { font-weight: 600; font-size: 0.88rem; color: var(--ink); }
 .contact-form input,

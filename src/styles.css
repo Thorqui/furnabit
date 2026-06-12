@@ -639,7 +639,7 @@ p  { text-wrap: pretty; }
 .contact-info-item a { transition: color var(--t-fast) var(--ease-out-quart); }
 .contact-info-item a:hover { color: var(--accent); }
 
-.contact-form { display: grid; gap: var(--space-md); }
+.contact-form { display: grid; gap: var(--space-md); scroll-margin-top: calc(var(--header-height) + var(--space-lg)); }
 .form-group   { display: grid; gap: var(--space-xs); }
 .contact-form label { font-weight: 600; font-size: 0.86rem; color: var(--ink); }
 .contact-form input,
